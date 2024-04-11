@@ -30,7 +30,9 @@ export const getConfig = (overrides?: IConfig): Config => {
           type,
           subtype,
           percent: (current / total) * 100,
-          phase: type === "compute" ? "process" : "assets",
+          phase: (type === "compute" ? "process" : "assets") as
+            | "assets"
+            | "process",
         };
         overrides?.progress?.(arg);
       }

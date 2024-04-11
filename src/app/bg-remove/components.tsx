@@ -1,5 +1,4 @@
 import React from "react";
-import { ImagePreview } from "./components";
 import { AsyncStatus } from "./types";
 
 export interface ImageUploaderProps {
