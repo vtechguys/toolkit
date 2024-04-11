@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +17,55 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} antialiased bg-white`}>
+        <div className="sticky top-0 w-full flex-none z-50 border-b border-slate-900/10  px-10 py-6 bg-white">
+          <div className="max-w-8xl mx-auto flex between">
+            <Link
+              className="mr-3 flex-none w-[2.0625rem] overflow-hidden md:w-auto"
+              href="/"
+            >
+              <span className="sr-only">Overflow home page</span>
+              <span className="text-slate-900 w-auto h-5">Overflow</span>
+            </Link>
+
+            <div className="lg:flex items-center ml-auto">
+              <nav className="text-sm leading-6 font-semibold text-slate-700">
+                <ul className="flex space-x-8">
+                  <li>
+                    <Link
+                      className={`hover:text-sky-500
+                        `}
+                      href="/bg-remove"
+                    >
+                      Background remove
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={`hover:text-sky-500
+                        `}
+                      href="/rgba-hex"
+                    >
+                      RGBA to HEX
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={`hover:text-sky-500
+                        `}
+                      href="/hex-rgba"
+                    >
+                      HEX to RGBA
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <div className="min-h-screen">{children}</div>
+      </body>
     </html>
   );
 }

@@ -1,0 +1,79 @@
+/* The element on which tooltip has to be shown */
+.with-tooltip {
+  position: relative;
+}
+/* pseudo element are designed to be tooltip-box */
+/* ::before element appears as tooltip-box */
+.with-tooltip::before {
+  --size: 0;
+  --translate-y: 0px;
+  --translate-x: 0px;
+  --tooltip-bg-color: rgb(31, 31, 31);
+  --tooltip-text-color: white;
+  --tooltip-elevation: 10;
+  position: absolute;
+}
+/*the tooltip is shown when --size=1 */
+
+/* by default it is shown on hover */
+.with-tooltip.with-tooltip--hover:hover::before {
+  --size: 1;
+}
+
+/* if user want to control tooltip showing */
+.with-tooltip--active::before {
+  --size: 1;
+}
+
+/* tooltip width never exceeds its container width */
+.with-tooltip--no-overflow-container {
+  max-width: 100%;
+}
+
+/*  styles on tooltip-box */
+.with-tooltip::before {
+  content: attr(data-tooltip);
+  color: white;
+  padding: 0.3rem;
+  border-radius: 0.2rem;
+  text-align: center;
+  width: max-content;
+  background: var(--tooltip-bg-color);
+  transform: translateX(var(--translate-x)) translateY(var(--translate-y))
+    scale(var(--size));
+  transition: 150ms transform;
+  z-index: var(--tooltip-elevation);
+}
+
+/* tooltip opening at top of container */
+.with-tooltip.with-tooltip--top::before {
+  --translate-x: -50%;
+  --translate-y: -100%;
+  top: -0.25rem;
+  left: 50%;
+  transform-origin: bottom center;
+}
+/* tooltip opens at bottom of container */
+.with-tooltip.with-tooltip--bottom::before {
+  --translate-x: -50%;
+  --translate-y: 100%;
+  bottom: -0.25rem;
+  left: 50%;
+  transform-origin: top center;
+}
+/* tooltip shown at bottom of container */
+.with-tooltip.with-tooltip--left::before {
+  --translate-x: -100%;
+  --translate-y: -50%;
+  top: 50%;
+  left: -0.25rem;
+  transform-origin: right center;
+}
+/* tooltip shown at right side of container */
+.with-tooltip.with-tooltip--right::before {
+  --translate-x: 100%;
+  --translate-y: -50%;
+  top: 50%;
+  right: -0.25rem;
+  transform-origin: left center;
+}

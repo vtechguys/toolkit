@@ -1,11 +1,9 @@
 import type { Config } from "tailwindcss";
+const { withTV } = require("tailwind-variants/transformer");
 
-const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+/** @type {import('tailwindcss').Config} */
+const config: Config = withTV({
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       backgroundImage: {
@@ -16,5 +14,5 @@ const config: Config = {
     },
   },
   plugins: [],
-};
+});
 export default config;
